@@ -4,84 +4,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tim Dullinger (Ghost Taker)</title>
-  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css"> {/* Pfad angepasst */}
 </head>
 <body>
-  <div style="position: absolute; top: 20px; right: 20px;">
-    <a href="/" title="Deutsch" style="margin-right: 8px; font-size: 1.5rem;">DE</a>
-    <a href="/en/" title="English" style="font-size: 1.5rem;">EN</a>
-  </div>
+  <header>
+    <div class="language-switcher">
+      <a href="/" title="German">DE</a> {/* Link zur deutschen Hauptseite */}
+      <a href="/en/" title="English" class="active">EN</a> {/* Englische Seite als aktiv */}
+    </div>
+    <div class="hero">
+      <h1>Tim Dullinger</h1>
+      <p class="subtitle">also known as GhostTaker – Developer • Modder • System Designer</p>
+    </div>
+  </header>
 
-  <h1>Tim Dullinger</h1>
-  <p class="subtitle">also known as GhostTaker – Developer • Modder • System Designer</p>
-
-  <div class="section">
-    <h2>About Me</h2>
-    <p>I design and develop custom systems, mods, and mechanics for various games. My focus lies on immersive design, attention to detail, and creative extensions of existing frameworks. Under the name GhostTaker, I've contributed to multiple well-known community projects.</p>
-  </div>
-
-  <div class="section">
-    <h2>Projects</h2>
-
-    <div class="project-box">
-      <strong><a href="https://cosmoteer.net/" target="_blank">Community Involvement in Cosmoteer</a></strong>
-      Actively contributed to the growth of the Cosmoteer community through modding collaborations, organizing livestreams and tournaments, promoting the game by contacting YouTubers, running weekly ship spotlights in the forum and on Disqus, and creating scenario mods.
+  <main>
+    <div class="section">
+      <h2>About Me</h2>
+      <p>I develop and design systems, mods, and mechanics. My focus is on immersive design, attention to detail, and the creative extension of existing frameworks. Under the name GhostTaker, I have contributed to several well-known community projects.</p>
     </div>
 
-    <div class="project-box">
-      <strong><a href="https://forum.cosmoteer.net/d/91-german-translation-deutsche-bersetzung" target="_blank">German Translation for Cosmoteer</a></strong>
-      The first unofficial translation of Cosmoteer into German, laying the foundation for later multilingual support.
+    <div class="section">
+      <h2>Projects</h2>
+
+      <div class="project-box">
+        <strong>StarWright's Eye (Cosmoteer Tool)</strong>
+        <p>A tool for Cosmoteer currently under development, which allows for detailed analysis of ship designs directly from the <code>.ship.png</code> files. The key lies in the method Cosmoteer uses to store ship data and how "StarWright's Eye" makes this data accessible:</p>
+        <ul>
+          <li><strong>Steganography in PNGs:</strong> Cosmoteer embeds ship data not obviously, but directly into the pixels of the <code>.ship.png</code> image files using steganography.</li>
+          <li><strong>Data Extraction:</strong> The tool reads these embedded binary data from the color channels of the image pixels.</li>
+          <li><strong>Processing Chain:</strong> The extracted data, which is in a proprietary binary format, is first decompressed using GZip. Subsequently, this binary data is converted into a readable format (similar to JSON) to enable the identification and counting of individual ship modules.</li>
+        </ul>
+        <p>Further details on the analysis functions and features of "StarWright's Eye" will be announced at a later date.</p>
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://cosmoteer.net/" target="_blank">Community Engagement in Cosmoteer</a></strong>
+        Intensive involvement in the growth of the Cosmoteer community through collaborations, organizing livestreams and tournaments, active promotion with YouTubers, weekly ship spotlights on the forum and Disqus, as well as developing narrative scenarios as mods.
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://forum.cosmoteer.net/d/91-german-translation-deutsche-bersetzung" target="_blank">German Translation for Cosmoteer</a></strong>
+        The first translation of Cosmoteer into German, which paved the way for later multilingual support.
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://forum.cosmoteer.net/d/352-star-wars-the-clone-wars-galaxy" target="_blank">Star Wars: The Clone Wars Galaxy (Cosmoteer)</a></strong>
+        A mod for Cosmoteer that brings ships from the Star Wars Clone Wars into the game. This later evolved into a larger Star Wars mod: "Star Wars: A Cosmos Divided".
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://store.steampowered.com/app/491180/Discrepant/" target="_blank">Playtester – Discrepant (PC)</a></strong>
+        Participation in the testing phase of the psychological Sci-Fi adventure "Discrepant" with a focus on technology, gameplay flow, and atmospheric coherence.
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2739514922" target="_blank">Ghost Taker's Unlimited Traits (Stellaris)</a></strong>
+        Increases the trait limits for leaders in Stellaris and allows for almost unlimited customization in empire building.
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3334513399" target="_blank">Hearts of Honor (Hearts of Iron IV)</a></strong>
+        An alternative history mod that integrates the world of "For Honor" into the Hearts of Iron universe, with its own factions and lore.
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2034328957" target="_blank">Rise of Swabia (Hearts of Iron IV)</a></strong>
+        A regional alternative history mod in which Swabia appears as an independent state during World War II. The player can choose between five paths for the country.
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1945300595" target="_blank">Esperanto City Names (Transport Fever 2)</a></strong>
+        An immersive mod that adds 63 city names in Esperanto – ideal for maps in a unified future or neutral regions. The names combine Esperantized real cities with fantasy names.
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://www.transportfever.net/thread/11463-feluno-bastelt/?postID=423171&highlight=NE81#post423171" target="_blank">Wieslauftalbahn Livery NE81 (Train Fever / Transport Fever)</a></strong>
+        An individual livery for the NE81 railcar, inspired by the real Wieslauftalbahn – created for Train Fever as well as Transport Fever 1 & 2 as part of a larger community mod project.
+      </div>
+
+      <div class="project-box">
+        <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2166929221" target="_blank">Total Stargate Conversion (Reassembly)</a></strong>
+        A comprehensive total conversion mod that recreates the Stargate universe in Cosmoteer, including its own ships and factions.
+        {/* Hinweis: Der deutsche Quelltext nannte hier "Cosmoteer". Wenn das Spiel eigentlich "Reassembly" sein sollte, müsstest du "Cosmoteer" hier in "Reassembly" ändern. */}
+      </div>
     </div>
 
-    <div class="project-box">
-      <strong><a href="https://forum.cosmoteer.net/d/352-star-wars-the-clone-wars-galaxy" target="_blank">Star Wars: The Clone Wars Galaxy (Cosmoteer)</a></strong>
-      A comprehensive total conversion mod recreating the Star Wars Clone Wars universe in Cosmoteer, including ships and factions.
+    <div class="section">
+      <h2>Contact</h2>
+      <p>Available via <a href="https://github.com/iamghosttaker" target="_blank">GitHub</a>. Project inquiries are welcome.</p>
     </div>
-
-    <div class="project-box">
-      <strong><a href="https://store.steampowered.com/app/491180/Discrepant/" target="_blank">Game Tester – Discrepant (PC)</a></strong>
-      Participated in the testing phase of the psychological sci-fi game "Discrepant", contributing feedback on technical issues, flow, and atmosphere.
-    </div>
-
-    <div class="project-box">
-      <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2739514922" target="_blank">Ghost Taker's Unlimited Traits (Stellaris)</a></strong>
-      Expands Stellaris' leader trait limits, allowing nearly unlimited customization when building empires.
-    </div>
-
-    <div class="project-box">
-      <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3334513399" target="_blank">Hearts of Honor (Hearts of Iron IV)</a></strong>
-      An alternate history mod that merges the world of "For Honor" with Hearts of Iron IV, including custom factions and lore.
-    </div>
-
-    <div class="project-box">
-      <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2034328957" target="_blank">Rise of Swabia (Hearts of Iron IV)</a></strong>
-      A regional alternate history mod imagining an independent Swabia during World War II.
-    </div>
-
-    <div class="project-box">
-      <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1945300595" target="_blank">Esperanto City Names (Transport Fever 2)</a></strong>
-      A mod that adds 63 Esperanto city names, both realistic and fictional-ideal, for neutral or futuristic maps.
-    </div>
-
-    <div class="project-box">
-      <strong><a href="https://www.transportfever.net/thread/11463-feluno-bastelt/?postID=423171&highlight=NE81#post423171" target="_blank">Wieslauftalbahn Livery NE81 (Train Fever / Transport Fever)</a></strong>
-      A custom livery for the NE81 train, inspired by the real Wieslauftalbahn. Developed as part of a larger community project for Train Fever and Transport Fever.
-    </div>
-
-    <div class="project-box">
-      <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2166929221" target="_blank">Total Stargate Conversion (Reassembly)</a></strong>
-      A full overhaul mod for Reassembly, transforming the game into a Stargate-themed universe with custom ships, factions, and visuals.
-    </div>
-
-  </div>
-
-  <div class="section">
-    <h2>Contact</h2>
-    <p>Reachable via <a href="https://github.com/iamghosttaker" target="_blank">GitHub</a>. Project inquiries are welcome.</p>
-  </div>
+  </main>
 
   <footer>
-    &copy; 2025 Tim Dullinger / GhostTaker — All rights reserved.
+    &copy; 2025 Tim Dullinger / GhostTaker - All rights reserved.
   </footer>
 </body>
 </html>
