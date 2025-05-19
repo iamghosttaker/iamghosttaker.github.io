@@ -107,6 +107,11 @@ main {
 .project-box ul {
   padding-left: 20px;
   margin-top: 0.5rem;
+  list-style-type: disc; /* Standard-Aufzählungszeichen für bessere Lesbarkeit */
+}
+
+.project-box ul li {
+  margin-bottom: 0.25rem; /* Kleiner Abstand zwischen Listenelementen */
 }
 
 .project-box code {
@@ -114,6 +119,7 @@ main {
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: monospace;
+  font-size: 0.9em; /* Etwas kleiner als der Fließtext */
 }
 
 a {
