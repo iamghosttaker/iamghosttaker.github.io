@@ -1,101 +1,1379 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tim Dullinger (GhostTaker)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tankpoint Gohl Schorndorf — Tanken &amp; Bistro · Gmünder Straße 35</title>
+<meta name="description" content="tankpoint Gohl in Schorndorf — Ihre freie Tankstelle in der Gmünder Straße 35. Diesel, Super E5, E10, Super Plus. Mit Bistro: belegte Brötchen, Snacks &amp; mehr. Auch für LKW geeignet.">
+<meta name="theme-color" content="#15B842">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --green:        #15B842;
+  --green-bright: #1ECB4D;
+  --green-deep:   #0E8E33;
+  --green-soft:   #E8F9EE;
+  --ink:          #1A1D1F;
+  --ink-soft:     #3A3F44;
+  --steel:        #6B7177;
+  --line:         #E4E6E8;
+  --paper:        #FFFFFF;
+  --paper-2:      #F5F6F7;
+  --paper-3:      #EDEEEF;
+
+  --shadow-sm: 0 1px 2px rgba(20,28,36,.05);
+  --shadow-md: 0 8px 24px rgba(20,28,36,.08);
+  --shadow-lg: 0 24px 60px rgba(20,28,36,.12);
+
+  --r-sm: 6px;
+  --r-md: 14px;
+  --r-lg: 24px;
+
+  --container: 1200px;
+}
+
+/* ============================================
+   RESET
+   ============================================ */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+
+::selection { background: var(--green); color: #fff; }
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.section {
+  padding: 110px 0;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 70px 0; }
+  .container { padding: 0 20px; }
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 44px;
+  user-select: none;
+}
+.logo__name {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  padding-right: 14px;
+  border-right: 2px solid var(--green);
+  line-height: 1;
+}
+.logo__circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  box-shadow: 0 2px 6px rgba(21,184,66,.35);
+  position: relative;
+}
+.logo__circle::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.25);
+  pointer-events: none;
+}
+.logo__circle span {
+  color: #fff;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.logo__circle span:first-child { margin-bottom: 1px; }
+
+/* large logo variant for hero / footer */
+.logo--lg { height: 72px; }
+.logo--lg .logo__name {
+  font-size: 44px;
+  padding-right: 22px;
+  border-right-width: 3px;
+}
+.logo--lg .logo__circle {
+  width: 72px;
+  height: 72px;
+  margin-left: 18px;
+}
+.logo--lg .logo__circle span { font-size: 16px; }
+.logo--lg .logo__circle span:first-child { margin-bottom: 2px; }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+.nav__links {
+  display: flex;
+  gap: 38px;
+  align-items: center;
+}
+.nav__link {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: color .2s;
+  position: relative;
+}
+.nav__link:hover { color: var(--green-deep); }
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 0;
+  width: 0; height: 2px;
+  background: var(--green);
+  transition: width .25s ease;
+}
+.nav__link:hover::after { width: 100%; }
+
+.nav__cta {
+  background: var(--ink);
+  color: #fff;
+  padding: 11px 22px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav__cta:hover { background: var(--green); transform: translateY(-1px); }
+
+.nav__burger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+.nav__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  position: relative;
+}
+.nav__burger span::before,
+.nav__burger span::after {
+  content: '';
+  position: absolute;
+  left: 0; width: 100%; height: 2px;
+  background: var(--ink);
+}
+.nav__burger span::before { top: -7px; }
+.nav__burger span::after  { top: 7px; }
+
+@media (max-width: 860px) {
+  .nav__links { display: none; }
+  .nav__burger { display: flex; }
+  .nav__cta { padding: 9px 16px; font-size: 13px; }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  padding: 80px 0 120px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% -10%, rgba(21,184,66,.10), transparent 55%),
+    linear-gradient(180deg, #fff 0%, var(--paper-2) 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%; height: 4px;
+  background: var(--green);
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--green-soft);
+  color: var(--green-deep);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero__eyebrow::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(21,184,66,.6);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(21,184,66,.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(21,184,66,0); }
+  100% { box-shadow: 0 0 0 0 rgba(21,184,66,0); }
+}
+
+.hero__title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(54px, 8vw, 108px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero__title em {
+  font-style: normal;
+  color: var(--green);
+  position: relative;
+  display: inline-block;
+}
+.hero__title em::after {
+  content: '.';
+  color: var(--ink);
+}
+
+.hero__lead {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all .25s;
+  white-space: nowrap;
+}
+.btn--primary {
+  background: var(--ink);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: var(--green);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(21,184,66,.3);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--line);
+}
+.btn--ghost:hover {
+  border-color: var(--ink);
+  background: #fff;
+}
+.btn svg { transition: transform .25s; }
+.btn:hover svg { transform: translateX(3px); }
+
+.hero__visual {
+  position: relative;
+}
+.hero__photo {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4 / 3;
+}
+.hero__photo img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero__badge {
+  position: absolute;
+  bottom: -28px;
+  left: -28px;
+  background: #fff;
+  padding: 22px 28px;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero__badge-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--green);
+  position: relative;
+}
+.hero__badge-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: .25;
+  animation: pulse-soft 2s infinite;
+}
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: .25; }
+  50% { transform: scale(1.4); opacity: 0; }
+}
+.hero__badge-text small {
+  display: block;
+  font-size: 12px;
+  color: var(--steel);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.hero__badge-text strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 50px; }
+  .hero__photo { aspect-ratio: 16/10; }
+  .hero__badge { left: 12px; bottom: -20px; padding: 16px 20px; }
+}
+
+/* ============================================
+   MARQUEE (Trust strip)
+   ============================================ */
+.strip {
+  background: var(--ink);
+  color: #fff;
+  padding: 22px 0;
+  overflow: hidden;
+  position: relative;
+}
+.strip__track {
+  display: flex;
+  gap: 70px;
+  animation: scroll 28s linear infinite;
+  white-space: nowrap;
+  font-family: 'Anton', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.strip__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 70px;
+  flex-shrink: 0;
+}
+.strip__item::after {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+}
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   SECTION HEADERS
+   ============================================ */
+.kicker {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  margin-bottom: 16px;
+  position: relative;
+  padding-left: 28px;
+}
+.kicker::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 18px; height: 2px;
+  background: var(--green);
+}
+.h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+.h2 em {
+  font-style: normal;
+  color: var(--green);
+}
+.section__lead {
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 640px;
+  line-height: 1.55;
+}
+
+/* ============================================
+   SERVICES
+   ============================================ */
+.services { background: var(--paper-2); }
+
+.services__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 70px;
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--r-lg);
+  padding: 48px 44px 44px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.card--dark {
+  background: var(--ink);
+  color: #fff;
+  border: none;
+}
+.card--dark .card__title,
+.card--dark .card__num { color: #fff; }
+.card--dark .card__lead { color: rgba(255,255,255,.75); }
+.card--dark .item { border-color: rgba(255,255,255,.08); }
+.card--dark .item__name { color: #fff; }
+.card--dark .item__meta { color: rgba(255,255,255,.55); }
+
+.card__num {
+  font-family: 'Anton', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--steel);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card__num::before {
+  content: ''; width: 22px; height: 1px; background: currentColor;
+}
+
+.card__title {
+  font-family: 'Anton', sans-serif;
+  font-size: 44px;
+  line-height: 1.08;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  letter-spacing: -0.005em;
+}
+.card__lead {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin-bottom: 32px;
+  line-height: 1.55;
+  max-width: 380px;
+}
+
+.item-list { list-style: none; }
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.item:last-child { border-bottom: none; }
+.item__name {
+  font-weight: 600;
+  font-size: 16px;
+}
+.item__meta {
+  font-size: 13px;
+  color: var(--steel);
+  font-weight: 500;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--green-soft);
+  color: var(--green-deep);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.card--dark .tag {
+  background: var(--green);
+  color: #fff;
+}
+
+.card__corner {
+  position: absolute;
+  top: 36px;
+  right: 36px;
+  font-family: 'Anton', sans-serif;
+  font-size: 88px;
+  line-height: 1;
+  color: var(--paper-3);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.card--dark .card__corner { color: rgba(255,255,255,.05); opacity: 1; }
+
+@media (max-width: 800px) {
+  .services__grid { grid-template-columns: 1fr; }
+  .card { padding: 36px 28px; }
+  .card__title { font-size: 36px; }
+  .card__corner { font-size: 64px; top: 24px; right: 24px; }
+}
+
+/* ============================================
+   BISTRO HIGHLIGHT
+   ============================================ */
+.bistro {
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.bistro__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.bistro__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 40px;
+}
+.menu-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px dashed var(--line);
+  position: relative;
+}
+.menu-row:last-child { border-bottom: none; }
+.menu-row__name {
+  font-family: 'Archivo', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.menu-row__desc {
+  font-size: 14px;
+  color: var(--steel);
+  margin-top: 4px;
+}
+.menu-row__icon {
+  font-family: 'Anton', sans-serif;
+  font-size: 14px;
+  color: var(--green);
+  letter-spacing: 0.08em;
+}
+
+.bistro__visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1d1f 0%, #2d3133 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 50px;
+}
+.bistro__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(21,184,66,.28), transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(21,184,66,.14), transparent 50%);
+}
+.bistro__big {
+  position: relative;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(80px, 12vw, 160px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+.bistro__big span {
+  display: block;
+}
+.bistro__big span:nth-child(2) { color: var(--green-bright); }
+.bistro__big small {
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+@media (max-width: 900px) {
+  .bistro__grid { grid-template-columns: 1fr; gap: 50px; }
+  .bistro__visual { aspect-ratio: 16/10; padding: 40px 24px; }
+}
+
+/* ============================================
+   HOURS + CONTACT
+   ============================================ */
+.info { background: var(--paper-2); }
+.info__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 70px;
+}
+.info-card {
+  background: #fff;
+  border-radius: var(--r-lg);
+  padding: 44px 40px;
+  border: 1px solid var(--line);
+}
+.info-card__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.info-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--green-soft);
+  color: var(--green-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.info-card__title {
+  font-family: 'Anton', sans-serif;
+  font-size: 30px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.info-card__subtitle {
+  font-size: 13px;
+  color: var(--steel);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--paper-3);
+}
+.hours-row:last-child { border-bottom: none; }
+.hours-row__day { font-weight: 600; }
+.hours-row__time {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+.hours-row.is-today {
+  margin: 4px -16px;
+  padding: 14px 16px;
+  background: var(--green-soft);
+  border-radius: 10px;
+  border-bottom: none;
+}
+.hours-row.is-today .hours-row__day { color: var(--green-deep); }
+.hours-row.is-today .hours-row__time { color: var(--green-deep); }
+.hours-row.is-today + .hours-row { border-top: 1px solid var(--paper-3); }
+
+.contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--paper-3);
+}
+.contact-row:last-child { border-bottom: none; }
+.contact-row__label {
+  font-size: 12px;
+  color: var(--steel);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.contact-row__value {
+  font-family: 'Archivo', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.contact-row__value a:hover { color: var(--green-deep); }
+
+@media (max-width: 800px) {
+  .info__grid { grid-template-columns: 1fr; }
+  .info-card { padding: 32px 24px; }
+}
+
+/* ============================================
+   ANFAHRT / MAP
+   ============================================ */
+.directions {
+  background: var(--ink);
+  color: #fff;
+}
+.directions__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+.directions .h2 { color: #fff; }
+.directions .h2 em { color: var(--green-bright); }
+.directions .section__lead { color: rgba(255,255,255,.7); }
+.directions .kicker { color: var(--green-bright); }
+
+.directions__address {
+  margin-top: 36px;
+  padding: 24px 28px;
+  background: rgba(255,255,255,.04);
+  border-radius: var(--r-md);
+  border-left: 3px solid var(--green);
+  font-family: 'Archivo', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.directions__buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.directions .btn--primary {
+  background: var(--green);
+  color: #fff;
+}
+.directions .btn--primary:hover {
+  background: var(--green-bright);
+  box-shadow: 0 12px 28px rgba(21,184,66,.4);
+}
+.directions .btn--ghost {
+  color: #fff;
+  border-color: rgba(255,255,255,.2);
+}
+.directions .btn--ghost:hover {
+  border-color: rgba(255,255,255,.5);
+  background: rgba(255,255,255,.05);
+}
+
+.map-wrap {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.map-wrap iframe {
+  width: 100%; height: 100%; border: 0;
+  filter: grayscale(0.2) contrast(1.05);
+}
+
+@media (max-width: 900px) {
+  .directions__grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--paper);
+  padding: 70px 0 30px;
+  border-top: 1px solid var(--line);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+.footer__brand p {
+  margin-top: 22px;
+  color: var(--steel);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 320px;
+}
+.footer__col h4 {
+  font-family: 'Anton', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.footer__col ul { list-style: none; }
+.footer__col li {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  transition: color .2s;
+}
+.footer__col a:hover { color: var(--green-deep); }
+
+.footer__bottom {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--steel);
+}
+.footer__bottom a { color: var(--steel); margin-left: 18px; transition: color .2s; }
+.footer__bottom a:hover { color: var(--ink); }
+
+@media (max-width: 800px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer__brand { grid-column: span 2; }
+}
+@media (max-width: 480px) {
+  .footer__grid { grid-template-columns: 1fr; }
+  .footer__brand { grid-column: span 1; }
+}
+
+/* ============================================
+   FADE IN
+   ============================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="hero">
-            <h1>Tim Dullinger</h1>
-            <p class="subtitle">auch bekannt als GhostTaker – Entwickler • Modder • Systemdesigner</p>
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav">
+  <div class="container nav__inner">
+    <a href="#top" class="logo" aria-label="tankpoint Gohl">
+      <span class="logo__name">GOHL</span>
+      <span class="logo__circle">
+        <span>tank</span>
+        <span>point</span>
+      </span>
+    </a>
+    <div class="nav__links">
+      <a href="#leistungen" class="nav__link">Leistungen</a>
+      <a href="#bistro"     class="nav__link">Bistro</a>
+      <a href="#zeiten"     class="nav__link">Öffnungszeiten</a>
+      <a href="#anfahrt"    class="nav__link">Anfahrt</a>
+    </div>
+    <a href="tel:+497181939890" class="nav__cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      07181 939890
+    </a>
+    <button class="nav__burger" aria-label="Menü"><span></span></button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="reveal">
+        <h1 class="hero__title">
+          Tanken.<br>
+          Snacken.<br>
+          <em>Weiterfahren</em>
+        </h1>
+        <p class="hero__lead">
+          Ihre freie Tankstelle in der Gmünder Straße — fair im Preis, ehrlich im Service. Frische belegte Brötchen, Snacks und eine Tasse Kaffee fürs Unterwegs gibt's gleich dazu.
+        </p>
+        <div class="hero__buttons">
+          <a href="#anfahrt" class="btn btn--primary">
+            Anfahrt &amp; Öffnungszeiten
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#bistro" class="btn btn--ghost">
+            Was es im Bistro gibt
+          </a>
         </div>
-    </header>
-
-    <main>
-        <div class="section">
-            <h2>Über mich</h2>
-            <p>Ich entwickle und gestalte Systeme, Mods und Mechaniken. Mein Fokus liegt auf immersivem Design, Detailgenauigkeit und kreativer Erweiterung bestehender Frameworks. Unter dem Namen GhostTaker habe ich an mehreren bekannten Community-Projekten mitgewirkt.</p>
+      </div>
+      <div class="hero__visual reveal">
+        <div class="hero__photo">
+          <img src="images/tankstelle.png" alt="tankpoint Gohl Tankstelle in Schorndorf, Gmünder Straße 35">
         </div>
-
-        <div class="section">
-            <h2>Projekte</h2>
-
-            <div class="project-box">
-                <strong>StarWright's Eye (Cosmoteer Tool)</strong>
-                <p>Ein sich in Entwicklung befindliches Werkzeug für Cosmoteer, das detaillierte Analysen von Schiff-Designs direkt aus den <code>.ship.png</code>-Dateien ermöglicht. Der Clou liegt in der Methode, wie Cosmoteer Schiffsdaten speichert und wie "StarWright's Eye" diese zugänglich macht:</p>
-                <ul>
-                    <strong>Steganografie in PNGs:</strong> Cosmoteer bettet Schiffsdaten nicht offensichtlich, sondern mittels Steganografie direkt in die Pixel der <code>.ship.png</code>-Bilddateien ein.
-                    <strong>Datenextraktion:</strong> Das Tool liest diese eingebetteten Binärdaten aus den Farbkanälen der Bildpixel aus.
-                    <strong>Verarbeitungskette:</strong> Die extrahierten Daten, die in einem proprietären Binärformat vorliegen, werden zunächst mittels GZip dekomprimiert. Anschließend werden diese Binärdaten in ein lesbares Format (ähnlich JSON) konvertiert, um die Identifizierung und Zählung der einzelnen Schiffsmodule zu ermöglichen.
-                </ul>
-                <p>Weitere Details zu den Analysefunktionen und Features von "StarWright's Eye" werden zu einem späteren Zeitpunkt bekannt gegeben.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://cosmoteer.net/" target="_blank">Community-Engagement in Cosmoteer</a></strong>
-                <p>Intensive Mitwirkung am Wachstum der Cosmoteer-Community durch Kollaborationen, Organisation von Livestreams und Turnieren, aktive Promotion bei YouTubern, wöchentliche Schiff-Spotlights im Forum und Disqus sowie die Entwicklung narrativer Szenarien als Mods.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://forum.cosmoteer.net/d/91-german-translation-deutsche-bersetzung" target="_blank">Deutsche Übersetzung für Cosmoteer</a></strong>
-                <p>Die erste Übersetzung von Cosmoteer ins Deutsche, die den Weg für spätere mehrsprachige Unterstützung ebnete.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://forum.cosmoteer.net/d/352-star-wars-the-clone-wars-galaxy" target="_blank">Star Wars: The Clone Wars Galaxy (Cosmoteer)</a></strong>
-                <p>Eine Mod für Cosmoteer die Raumschiffe aus den Klonkriegen aus Star Wars in das Spiel enbringt. Daraus ist später eine größerer Star Wars Mod entstanden. "Star Wars: A Cosmos Divided"</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://store.steampowered.com/app/491180/Discrepant/" target="_blank">Spieltester – Discrepant (PC)</a></strong>
-                <p>Teilnahme an der Testphase des psychologischen Sci Fi Abenteuers "Discrepant" mit Fokus auf Technik, Spielfluss und atmosphärische Kohärenz.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2739514922" target="_blank">Ghost Taker's Unlimited Traits (Stellaris)</a></strong>
-                <p>Erhöht die Eigenschaftsgrenzen für Anführer in Stellaris und erlaubt nahezu unbegrenzte Individualisierung beim Imperiumsaufbau.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3334513399" target="_blank">Hearts of Honor (Hearts of Iron IV)</a></strong>
-                <p>Eine alternative Geschichtsmod, die die Welt von "For Honor" in das Hearts of Iron Universum integriert; mit eigenen Fraktionen und Lore.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2034328957" target="_blank">Rise of Swabia (Hearts of Iron IV)</a></strong>
-                <p>Eine regionale Alternative-History-Mod, in der Schwaben als eigenständiger Staat während des Zweiten Weltkriegs auftritt. Der Spieler kann zwischen fünf Pfäden für das Land wählen.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1945300595" target="_blank">Esperanto City Names (Transport Fever 2)</a></strong>
-                <p>Eine immersive Mod, die 63 Städtenamen in Esperanto hinzufügt – ideal für Karten in einer vereinten Zukunft oder neutralen Regionen. Die Namen kombinieren esperantisierte reale Städte mit Fantasienamen.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://www.transportfever.net/thread/11463-feluno-bastelt/?postID=423171&highlight=NE81#post423171" target="_blank">Wieslauftalbahn Lackierung NE81 (Train Fever / Transport Fever)</a></strong>
-                <p>Eine individuelle Lackierung für den NE81-Triebwagen, inspiriert von der realen Wieslauftalbahn – erstellt für Train Fever sowie Transport Fever 1 & 2 als Teil eines größeren Community-Modprojekts.</p>
-            </div>
-
-            <div class="project-box">
-                <strong><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2166929221" target="_blank">Total Stargate Conversion (Reassembly)</a></strong>
-                <p>Eine umfassende Total Conversion Mod, die das Stargate-Universum in Reassembly nachbildet; inklusive eigener Schiffe und Fraktionen.</p>
-            </div>
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge-text">
+            <small>Heute geöffnet</small>
+            <strong id="todayHours">05:30 — 23:00</strong>
+          </span>
         </div>
+      </div>
+    </div>
+  </div>
+</header>
 
-        <div class="section">
-            <h2>Kontakt</h2>
-            <p>Erreichbar über <a href="https://github.com/iamghosttaker" target="_blank">GitHub</a>. Projektanfragen sind willkommen.</p>
+<!-- ===== TRUST STRIP ===== -->
+<div class="strip" aria-hidden="true">
+  <div class="strip__track">
+    <div class="strip__item"><span>Diesel</span><span>Super E5</span><span>Super E10</span><span>Super Plus</span><span>Bistro</span><span>LKW geeignet</span><span>Tankkarten akzeptiert</span><span>Frische Brötchen</span></div>
+    <div class="strip__item"><span>Diesel</span><span>Super E5</span><span>Super E10</span><span>Super Plus</span><span>Bistro</span><span>LKW geeignet</span><span>Tankkarten akzeptiert</span><span>Frische Brötchen</span></div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="section services" id="leistungen">
+  <div class="container">
+    <div class="reveal" style="max-width: 720px;">
+      <span class="kicker">Was wir bieten</span>
+      <h2 class="h2">Alles für <em>unterwegs</em>.</h2>
+      <p class="section__lead">
+        Vom günstigen Sprit bis zum belegten Brötchen für die Mittagspause — wir halten Sie und Ihr Fahrzeug in Bewegung.
+      </p>
+    </div>
+
+    <div class="services__grid">
+      <!-- Card 1: Kraftstoffe -->
+      <article class="card reveal">
+        <span class="card__corner">01</span>
+        <div class="card__num">Kraftstoffe</div>
+        <h3 class="card__title">Volltanken<br>zum fairen Preis</h3>
+        <p class="card__lead">
+          Tagesaktuelle Preise gemäß MTS-K. Auch für LKW gut zugänglich.
+        </p>
+        <ul class="item-list">
+          <li class="item">
+            <span class="item__name">Diesel</span>
+            <span class="item__meta">PKW &amp; LKW geeignet</span>
+          </li>
+          <li class="item">
+            <span class="item__name">Super E5</span>
+            <span class="item__meta">95 Oktan</span>
+          </li>
+          <li class="item">
+            <span class="item__name">Super E10</span>
+            <span class="item__meta">95 Oktan · biogen</span>
+          </li>
+          <li class="item">
+            <span class="item__name">Super Plus</span>
+            <span class="item__meta">98 Oktan · Premium</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Card 2: Bistro & Shop -->
+      <article class="card reveal">
+        <span class="card__corner">02</span>
+        <div class="card__num">Bistro &amp; Shop</div>
+        <h3 class="card__title">Frisch belegt<br>für unterwegs</h3>
+        <p class="card__lead">
+          Belegte Brötchen, deftige Wurstwaren, kalte Getränke und Snacks — perfekt für die Pause.
+        </p>
+        <ul class="item-list">
+          <li class="item">
+            <span class="item__name">Belegte Brötchen</span>
+            <span class="tag">frisch</span>
+          </li>
+          <li class="item">
+            <span class="item__name">Wurst &amp; Snacks</span>
+            <span class="item__meta">heiß &amp; kalt</span>
+          </li>
+          <li class="item">
+            <span class="item__name">Heißgetränke</span>
+            <span class="item__meta">Kaffee · Tee</span>
+          </li>
+          <li class="item">
+            <span class="item__name">Kühle Getränke</span>
+            <span class="item__meta">Auswahl im Shop</span>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BISTRO HIGHLIGHT ===== -->
+<section class="section bistro" id="bistro">
+  <div class="container">
+    <div class="bistro__grid">
+      <div class="reveal">
+        <span class="kicker">Unser Bistro</span>
+        <h2 class="h2">Lecker, <em>schnell</em>,<br>von nebenan.</h2>
+        <p class="section__lead">
+          Bei uns gibt's nicht nur Sprit. Wer einen kurzen Stopp macht, bekommt ehrliches Essen für die Hand — frisch zubereitet, direkt zum Mitnehmen.
+        </p>
+
+        <div class="bistro__menu">
+          <div class="menu-row">
+            <div>
+              <div class="menu-row__name">Belegte Brötchen</div>
+              <div class="menu-row__desc">Mit Wurst, Käse oder Schinken</div>
+            </div>
+            <span class="menu-row__icon">▸ Frisch</span>
+          </div>
+          <div class="menu-row">
+            <div>
+              <div class="menu-row__name">Wurst &amp; Co.</div>
+              <div class="menu-row__desc">Heiße Snacks aus dem Bistro</div>
+            </div>
+            <span class="menu-row__icon">▸ Heiß</span>
+          </div>
+          <div class="menu-row">
+            <div>
+              <div class="menu-row__name">Kaffee &amp; Heißgetränke</div>
+              <div class="menu-row__desc">Für den Wachmacher zwischendurch</div>
+            </div>
+            <span class="menu-row__icon">▸ To Go</span>
+          </div>
+          <div class="menu-row">
+            <div>
+              <div class="menu-row__name">Snacks &amp; Getränke</div>
+              <div class="menu-row__desc">Süß, salzig, gekühlt — was das Herz begehrt</div>
+            </div>
+            <span class="menu-row__icon">▸ Shop</span>
+          </div>
         </div>
-    </main>
+      </div>
 
-    <footer>
-        &copy; 2025 Tim Dullinger / GhostTaker - Alle Rechte vorbehalten.
-    </footer>
+      <div class="bistro__visual reveal">
+        <div class="bistro__big">
+          <span>Hunger?</span>
+          <span>Stop hier.</span>
+          <small>Frisch · Schnell · Lecker</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ÖFFNUNGSZEITEN + KONTAKT ===== -->
+<section class="section info" id="zeiten">
+  <div class="container">
+    <div class="reveal" style="max-width: 720px;">
+      <span class="kicker">Wann &amp; wie</span>
+      <h2 class="h2">Wir sind <em>für Sie</em> da.</h2>
+      <p class="section__lead">
+        Früh morgens auf dem Weg zur Arbeit oder spät abends nach der Schicht — wir haben für Sie geöffnet.
+      </p>
+    </div>
+
+    <div class="info__grid">
+      <!-- Öffnungszeiten -->
+      <div class="info-card reveal">
+        <div class="info-card__head">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="info-card__title">Öffnungszeiten</div>
+            <div class="info-card__subtitle">Tankstelle &amp; Bistro</div>
+          </div>
+        </div>
+        <div id="hoursList">
+          <div class="hours-row" data-day="1"><span class="hours-row__day">Montag</span>     <span class="hours-row__time">05:30 — 23:00</span></div>
+          <div class="hours-row" data-day="2"><span class="hours-row__day">Dienstag</span>   <span class="hours-row__time">05:30 — 23:00</span></div>
+          <div class="hours-row" data-day="3"><span class="hours-row__day">Mittwoch</span>   <span class="hours-row__time">05:30 — 23:00</span></div>
+          <div class="hours-row" data-day="4"><span class="hours-row__day">Donnerstag</span> <span class="hours-row__time">05:30 — 23:00</span></div>
+          <div class="hours-row" data-day="5"><span class="hours-row__day">Freitag</span>    <span class="hours-row__time">05:30 — 23:00</span></div>
+          <div class="hours-row" data-day="6"><span class="hours-row__day">Samstag</span>    <span class="hours-row__time">06:30 — 23:00</span></div>
+          <div class="hours-row" data-day="0"><span class="hours-row__day">Sonn- &amp; Feiertag</span> <span class="hours-row__time">07:30 — 23:00</span></div>
+        </div>
+      </div>
+
+      <!-- Kontakt -->
+      <div class="info-card reveal">
+        <div class="info-card__head">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="info-card__title">Kontakt</div>
+            <div class="info-card__subtitle">Wir helfen gerne weiter</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div>
+            <div class="contact-row__label">Telefon</div>
+            <div class="contact-row__value"><a href="tel:+497181939890">07181 939890</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div>
+            <div class="contact-row__label">Fax</div>
+            <div class="contact-row__value">07181 9398920</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div>
+            <div class="contact-row__label">Adresse</div>
+            <div class="contact-row__value">Gmünder Straße 35<br>73614 Schorndorf</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div>
+            <div class="contact-row__label">Inhaber</div>
+            <div class="contact-row__value">André Gohl · Freie Tankstelle</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ANFAHRT ===== -->
+<section class="section directions" id="anfahrt">
+  <div class="container">
+    <div class="directions__grid">
+      <div class="reveal">
+        <span class="kicker">So finden Sie uns</span>
+        <h2 class="h2">Direkt an der <em>Gmünder Straße</em>.</h2>
+        <p class="section__lead">
+          Zentral und gut erreichbar — sowohl mit dem PKW als auch mit dem LKW. Mit großem Vordach, hell ausgeleuchtet und mit Bistro für die kurze Pause.
+        </p>
+        <div class="directions__address">
+          tankpoint Gohl<br>
+          Gmünder Straße 35<br>
+          73614 Schorndorf
+        </div>
+        <div class="directions__buttons">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=tankpoint+Gohl+Gm%C3%BCnder+Stra%C3%9Fe+35+Schorndorf" target="_blank" rel="noopener" class="btn btn--primary">
+            Route mit Google Maps
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="tel:+497181939890" class="btn btn--ghost">
+            Anrufen
+          </a>
+        </div>
+      </div>
+      <div class="map-wrap reveal">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=9.5305%2C48.8027%2C9.5405%2C48.8067&amp;layer=mapnik&amp;marker=48.80473%2C9.53549"
+          loading="lazy"
+          title="Karte: tankpoint Gohl, Gmünder Straße 35, Schorndorf"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="#top" class="logo logo--lg" aria-label="tankpoint Gohl">
+          <span class="logo__name">GOHL</span>
+          <span class="logo__circle">
+            <span>tank</span>
+            <span>point</span>
+          </span>
+        </a>
+        <p>Ihre freie Tankstelle in Schorndorf — fair, ehrlich, mit Bistro. Wir sehen uns an der Gmünder Straße.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#bistro">Bistro</a></li>
+          <li><a href="#zeiten">Öffnungszeiten</a></li>
+          <li><a href="#anfahrt">Anfahrt</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+497181939890">07181 939890</a></li>
+          <li>Fax: 07181 9398920</li>
+          <li>Gmünder Straße 35</li>
+          <li>73614 Schorndorf</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Datenschutz</a></li>
+          <li><a href="#">AGB</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> tankpoint Gohl · André Gohl Freie Tankstelle</span>
+      <div>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Markiere "Heute" in Öffnungszeiten =====
+  (function () {
+    var today = new Date().getDay(); // 0=So, 1=Mo, ...
+    var rows = document.querySelectorAll('#hoursList .hours-row');
+    var todayHours = '';
+    rows.forEach(function (r) {
+      if (parseInt(r.getAttribute('data-day')) === today) {
+        r.classList.add('is-today');
+        todayHours = r.querySelector('.hours-row__time').textContent;
+      }
+    });
+    var todayEl = document.getElementById('todayHours');
+    if (todayEl && todayHours) todayEl.textContent = todayHours;
+  })();
+
+  // ===== Aktuelles Jahr =====
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ===== Reveal-Animation beim Scrollen =====
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  // ===== Mobile Burger (einfacher Toggle) =====
+  var burger = document.querySelector('.nav__burger');
+  var links = document.querySelector('.nav__links');
+  if (burger && links) {
+    burger.addEventListener('click', function () {
+      var open = links.style.display === 'flex';
+      links.style.display = open ? '' : 'flex';
+      links.style.position = 'absolute';
+      links.style.top = '80px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.flexDirection = 'column';
+      links.style.background = '#fff';
+      links.style.padding = '24px';
+      links.style.borderBottom = '1px solid var(--line)';
+      links.style.gap = '20px';
+      if (open) {
+        links.removeAttribute('style');
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
