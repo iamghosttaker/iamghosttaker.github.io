@@ -1,1 +1,230 @@
-#
+/* =========================================================
+   GhostTaker — personal site
+   Palette: warm dusk / parchment
+   Type:    Cormorant Garamond (display) + JetBrains Mono (body)
+   ========================================================= */
+
+:root {
+  --bg:         #b3a896;   /* warm stone */
+  --bg-soft:    #c4baa9;   /* lighter stone */
+  --ink:        #1e1a14;   /* deep ink */
+  --ink-muted:  #5a5246;   /* muted brown */
+  --accent:     #6e2f15;   /* deep rust */
+  --accent-2:   #8a5a3c;   /* lighter rust on hover */
+  --rule:       #8a7f6e;   /* hairline brown */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* subtle parchment atmosphere — soft warm light, soft shadow */
+  background-image:
+    radial-gradient(ellipse at 20% 25%, rgba(255, 248, 230, 0.18) 0px, transparent 55%),
+    radial-gradient(ellipse at 80% 75%, rgba(40, 28, 18, 0.10) 0px, transparent 55%);
+  background-attachment: fixed;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  padding: clamp(2.5rem, 8vw, 5rem) 1.5rem;
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  width: 100%;
+  max-width: 580px;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  text-align: center;
+  margin-bottom: 2.75rem;
+}
+
+.name {
+  font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(3.2rem, 11vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.tagline {
+  margin-top: 1.1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* ---------- Divider with ornament ---------- */
+
+.rule {
+  position: relative;
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.75rem 0;
+}
+
+.rule::after {
+  content: "❦";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 0.9rem;
+  background: var(--bg);
+  color: var(--accent);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+/* ---------- Blocks ---------- */
+
+.block {
+  margin-bottom: 2.75rem;
+}
+
+.block:last-child {
+  margin-bottom: 0;
+}
+
+.block-title {
+  font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.55rem;
+  margin-bottom: 1.1rem;
+  color: var(--ink);
+}
+
+/* ---------- Link list ---------- */
+
+.links {
+  list-style: none;
+}
+
+.links li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px dotted var(--rule);
+  flex-wrap: wrap;
+}
+
+.links li:last-child {
+  border-bottom: none;
+}
+
+.links a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.links a::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 0.5em;
+  color: var(--accent);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.links a:hover,
+.links a:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+.links a:hover::after,
+.links a:focus-visible::after {
+  transform: translateX(4px);
+  color: var(--accent-2);
+}
+
+.handle {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Aliases ---------- */
+
+.aliases {
+  font-size: 0.95rem;
+  line-height: 1.95;
+  color: var(--ink);
+}
+
+.footnote {
+  margin-top: 0.9rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+/* ---------- Contact (when uncommented) ---------- */
+
+.contact a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--rule);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact a:hover,
+.contact a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* ---------- Responsive tweaks ---------- */
+
+@media (max-width: 480px) {
+  .links li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  .handle {
+    font-size: 0.72rem;
+  }
+  .tagline {
+    letter-spacing: 0.12em;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .links a,
+  .links a::after,
+  .contact a {
+    transition: none;
+  }
+}
